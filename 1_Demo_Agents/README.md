@@ -8,9 +8,9 @@ This project implements the **same financial analysis agent** in both frameworks
 
 | File | Framework | Description |
 |------|-----------|-------------|
-| `financial_agent_dspy.py` | DSPy | ReAct agent using DSPy's declarative approach |
-| `financial_agent_langgraph.py` | LangGraph | Graph-based agent with explicit state management |
-| `benchmark_dspy_vs_langgraph.py` | Both | Benchmark runner comparing performance |
+| `dspy_agent.py` | DSPy | ReAct agent using DSPy's declarative approach |
+| `langgraph_agent.py` | LangGraph | Graph-based agent with explicit state management |
+| `benchmark_dspy_lg.py` | Both | Benchmark runner comparing performance |
 
 ## Agent Capabilities
 
@@ -38,20 +38,20 @@ export OPENAI_API_KEY="your-api-key-here"
 
 ```bash
 # Run DSPy agent
-python financial_agent_dspy.py
+python dspy_agent.py
 
 # Run LangGraph agent
-python financial_agent_langgraph.py
+python langgraph_agent.py
 ```
 
 ### 4. Run Benchmark Comparison
 
 ```bash
 # Basic benchmark
-python benchmark_dspy_vs_langgraph.py
+python benchmark_dspy_lg.py
 
 # With options
-python benchmark_dspy_vs_langgraph.py --model gpt-4o --runs 3 --output results.md
+python benchmark_dspy_lg.py --model gpt-4o --runs 3 --output results.md
 ```
 
 ## Architecture Comparison
@@ -85,10 +85,10 @@ python benchmark_dspy_vs_langgraph.py --model gpt-4o --runs 3 --output results.m
 ┌─────────────────────────────────────────────┐
 │            LangGraph State Machine          │
 │                                             │
-│   ┌─────────┐    ┌─────────┐    ┌─────┐    │
-│   │  Agent  │───→│  Tools  │───→│ END │    │
-│   │  Node   │←───│  Node   │    │     │    │
-│   └─────────┘    └─────────┘    └─────┘    │
+│   ┌─────────┐    ┌─────────┐    ┌─────┐     │
+│   │  Agent  │───→│  Tools  │───→│ END │     │
+│   │  Node   │←───│  Node   │    │     │     │
+│   └─────────┘    └─────────┘    └─────┘     │
 │        │              │                     │
 │        └──────────────┘                     │
 │         (ReAct Loop)                        │
@@ -178,9 +178,9 @@ Based on typical runs:
 
 ```
 .
-├── financial_agent_dspy.py      # DSPy implementation
-├── financial_agent_langgraph.py # LangGraph implementation
-├── benchmark_dspy_vs_langgraph.py
+├── dspy_agent.py      # DSPy implementation
+├── langgraph_agent.py # LangGraph implementation
+├── benchmark_dspy_lg.py
 ├── requirements.txt
 ├── README.md
 └── benchmark_results.md         # Generated after running benchmark
@@ -197,10 +197,5 @@ Suggested article structure:
 5. **Analysis**: When to use which
 6. **Conclusion**: Recommendations
 
-## License
-
-MIT - Use freely for your article and projects.
 
 ---
-
-*Built for the "Beyond Prompts" article series by Loc*
